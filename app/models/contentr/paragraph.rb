@@ -2,11 +2,10 @@
 
 module Contentr
   class Paragraph < ActiveRecord::Base
-
     store :data
     store :unpublished_data
 
-    attr_accessible :area_name, :position, :data, :unpublished_data
+    permitted_attributes :area_name, :position, :data, :unpublished_data
 
     class_attribute :form_fields
 
@@ -102,15 +101,14 @@ module Contentr
         ul = self.class.uploaders
         skipped += self.class.uploader_options.map(&:last).map{|h| h[:mount_on]}
       end
-      self.fields.map do |f|
-        name = f.first
+      self.form_fields.map do |f|
+        name = f[:name]
         if skipped.member?(name) then nil else
           name = name.to_sym
           value = self[name]
-          long = value.is_a?(String) && (value.length > 80 || value.include?("\n"))
           options = {}
           options[:required] = false
-          options[:as] = :text if textpatt.match(name) || long
+          options[:as] = :text if textpatt.match(name) || f[:typ] == :text
           options[:as] = :file if ul[name]
           options[:as] = :hidden if name == :area_name
           [name, options]
@@ -158,7 +156,11 @@ module Contentr
       self.form_fields ||= []
       typ ||= "text"
       self.form_fields << {name: name, typ: typ.to_sym}
-      attr_accessible name
+      puts '----------------------'
+      puts name
+      puts '------------------------'
+      permitted_attributes name
+      puts self.permitted_attributes.inspect
     end
 
     def self.uploader_field(name, uploader)
@@ -170,7 +172,7 @@ module Contentr
       self.send(:define_method, "#{name}_changed?") do
         true # self.data_was && data_was[name] != data[name]
       end
-      
+
       # make a nice subclass to hold the actual asset
       asset_class_name = "ImageAsset#{self}#{name.capitalize}".gsub("::","")
       Object.const_set asset_class_name, Class.new(Contentr::ImageAsset)
@@ -210,7 +212,7 @@ module Contentr
       else
         klaz.try :new
       end
-    end    
+    end
   end
 end
 

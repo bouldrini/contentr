@@ -5,7 +5,7 @@ module Contentr
     include Rails.application.routes.url_helpers
 
     # Protect attributes from mass assignment
-    attr_accessible :linked_to
+    permitted_attributes :linked_to
 
     # Validations
     validates_presence_of   :linked_to
@@ -45,7 +45,7 @@ module Contentr
     end
 
     # Public: generate a url by the string given in the linked_to attribute
-    # 
+    #
     # Returns the url of the linkedPage or the rootUrl if non could be found
     def url
       begin

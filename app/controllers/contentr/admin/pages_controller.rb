@@ -1,5 +1,4 @@
 class Contentr::Admin::PagesController < Contentr::Admin::ApplicationController
-
   before_filter :load_root_page
 
   def index
@@ -15,13 +14,12 @@ class Contentr::Admin::PagesController < Contentr::Admin::ApplicationController
   end
 
   def create
-    @page = Contentr::ContentPage.new(params[:page])
+    @page = Contentr::ContentPage.new(page_params)
     if @root_page.present?
       @page.parent = @root_page
     else
       @page.parent = Contentr::Site.default
     end
-
     if @page.save
       flash[:success] = 'Page created.'
       redirect_to contentr_admin_pages_path(:root => @root_page)
@@ -37,7 +35,7 @@ class Contentr::Admin::PagesController < Contentr::Admin::ApplicationController
 
   def update
     @page = Contentr::Page.find(params[:id])
-    if @page.update_attributes(params[:page])
+    if @page.update_attributes(page_params)
       flash[:success] = 'Page updated.'
       redirect_to contentr_admin_pages_path(:root => @page.root)
     else
@@ -56,5 +54,10 @@ class Contentr::Admin::PagesController < Contentr::Admin::ApplicationController
   def load_root_page
     @root_page = Contentr::Page.find(params[:root]) if params[:root].present?
   end
+
+  protected
+    def page_params
+      params.require(:page).permit(*Contentr::Page.permitted_attributes)
+    end
 
 end

@@ -11,5 +11,9 @@ class Contentr::Admin::ApplicationController < Contentr::ApplicationController
   def get_layout
     request.xhr? ? nil : 'contentr_admin'
   end
+  protected
+    def contentr_authorized?
+      true # In a real app override this
+    end
 
 end

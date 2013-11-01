@@ -2,7 +2,7 @@
 
 require 'rails'
 require 'simple_form'
-
+require "compass"
 
 module Contentr
 

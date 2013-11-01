@@ -1,5 +1,5 @@
 //= require jquery
-//= require jquery-ui
+//= require jquery.ui.all
 //= require jquery_ujs
 //= require_self
 //= require ./page_manager
@@ -7,6 +7,6 @@
 
 var Contentr = {};
 
-jQuery(function($) {  
+jQuery(function($) {
   // ...
 });

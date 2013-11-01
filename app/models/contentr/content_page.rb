@@ -2,7 +2,7 @@ module Contentr
   class ContentPage < Page
 
     # Protect attributes from mass assignment
-    attr_accessible :layout, :template
+    permitted_attributes :layout, :template
 
     # Validations
     validates_presence_of :layout

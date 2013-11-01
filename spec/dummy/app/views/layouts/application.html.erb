@@ -38,7 +38,7 @@
   <% breadcrumb = contentr_breadcrumb %>
   <% if breadcrumb.present? %>
     You are here:
-    <%= breadcrumb %>
+    <%= breadcrumb.empty? ? breadcrumb : link_to(@contentr_page.url_path, @contentr_page.url_path) %>
     <hr/>
   <% end %>
 

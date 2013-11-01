@@ -8,7 +8,6 @@ class Contentr::Admin::ParagraphsController < Contentr::Admin::ApplicationContro
 
   def new
     @area_name = params[:area_name]
-
     if params[:type].present?
       @paragraph = paragraph_type_class.new(area_name: @area_name)
       render 'new'
@@ -18,9 +17,11 @@ class Contentr::Admin::ParagraphsController < Contentr::Admin::ApplicationContro
   end
 
   def create
-    @paragraph = paragraph_type_class.new(params[:paragraph].merge(:area_name => params[:area_name]))
+    @paragraph = paragraph_type_class.new(paragraph_params)
+    @paragraph.area_name = params[:area_name]
+    @paragraph.page = @page
     @page_or_site.paragraphs << @paragraph
-    if @page_or_site.save
+    if @page_or_site.save!
       flash[:notice] = 'Paragraph created'
       redirect_to contentr_admin_pages_path(root: @page.id)
     else
@@ -38,8 +39,8 @@ class Contentr::Admin::ParagraphsController < Contentr::Admin::ApplicationContro
     if params[:paragraph].has_key?("remove_image")
       @paragraph.image_asset_wrapper_for(params[:paragraph]["remove_image"]).remove_file!(@paragraph)
       params[:paragraph].delete("remove_image")
-    end 
-    if @paragraph.update_attributes(params[:paragraph])
+    end
+    if @paragraph.update_attributes(paragraph_params)
       flash[:notice] = 'Paragraph saved'
       redirect_to contentr_admin_pages_path(root: @page.id)
     else
@@ -98,5 +99,10 @@ class Contentr::Admin::ParagraphsController < Contentr::Admin::ApplicationContro
       @page = @page_or_site
     end
   end
+
+  protected
+    def paragraph_params
+      params.require(:paragraph).permit(*params['type'].constantize.permitted_attributes)
+    end
 
 end

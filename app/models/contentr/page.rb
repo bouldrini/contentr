@@ -10,14 +10,14 @@ module Contentr
     has_many :paragraphs, class_name: 'Contentr::Paragraph'
 
     # Protect attributes from mass assignment
-    attr_accessible :name, :slug, :position, :parent, :url_path, :description,
-                    :menu_title, :published, :hidden, :parent_id, :menu_only
+    permitted_attributes :name, :slug, :position, :parent, :url_path, :description,
+                    :menu_title, :published, :hidden, :parent_id, :menu_only, :layout, :template
 
 
     # Validations
     validates_presence_of   :name
     validates_presence_of   :slug
-    validates_format_of     :slug, with: /^[a-z0-9\s-]+$/
+    validates_format_of     :slug, with: /\A[a-z0-9\s-]+\z/
     # validates_presence_of   :path
     # validates_uniqueness_of :path, allow_nil: false, allow_blank: false
     validate                :check_nodes
@@ -125,7 +125,7 @@ module Contentr
     end
 
     # Public: Searches for all paragraphs with an exact area_name
-    # 
+    #
     # area_name - the area_name to search for
     #
     # Returns the matching paragraphs
@@ -207,7 +207,7 @@ module Contentr
       return true  if self.is_root? && self.accepted_parent_nodes.include?(:root)
       return false if self.is_root? && !self.accepted_parent_nodes.include?(:root)
       return self.accepted_parent_nodes.any?{ |node_class| node_class.kind_of?(Class) && parent.is_a?(node_class) }
-      
+
     end
 
   end
