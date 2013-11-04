@@ -109,7 +109,7 @@ module Contentr
           options = {}
           options[:required] = false
           options[:as] = :text if textpatt.match(name) || f[:typ] == :text
-          options[:as] = :file if ul[name]
+          options[:as] = :file if f[:typ] == :file
           options[:as] = :hidden if name == :area_name
           [name, options]
         end
@@ -123,16 +123,21 @@ module Contentr
     # typ - the datatype in which the value should be casted
     #
     # calls the generated #{name}_without_typecast method which acts as a setter
-    def write_store_attribute(name, value, typ)
-      v = case typ
-        when "Text", "String", String then value.to_s
-        when "Integer", "Fixnum", Fixnum then value.to_i
-        when "Float", Float then value.to_f
-        when "Boolean" then !!value
-        when "file" then value
-        else raise "Unknown type #{typ}"
-      end
-      self.send("#{name}_without_typecast=", v)
+    # def write_store_attribute(name, value, typ)
+    def write_store_attribute(store_attribute, key, value)
+      # puts value
+      # puts name
+      # puts typ
+      # v = case typ
+      #   when "Text", "String", String then value.to_s
+      #   when "Integer", "Fixnum", Fixnum then value.to_i
+      #   when "Float", Float then value.to_f
+      #   when "Boolean" then !!value
+      #   when "file" then value
+      #   else raise "Unknown type #{typ}"
+      # end
+      # self.send("#{name}=", v)
+      self.send("#{store_attribute}")[key.to_sym] = value
     end
 
     # TODO

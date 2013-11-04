@@ -23,7 +23,7 @@ $(function (){
       <% end %>
       </div>
   </div>
-
+  <%= table_for Contentr::Site %>
   <table id="pages_table" class="contentr pagegrid" data-root-page-id="<%= @root_page ? @root_page.id : '' %>">
     <thead>
       <tr>

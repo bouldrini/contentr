@@ -4,6 +4,7 @@
 //= require_self
 //= require ./page_manager
 //= require ./area
+//= require tabulatr
 
 var Contentr = {};
 

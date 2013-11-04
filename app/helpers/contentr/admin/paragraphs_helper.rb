@@ -10,8 +10,11 @@ module Contentr
           p = p.for_edit if contentr_publisher? && current
           s = p.body.html_safe if p.body
           s += image_tag(p.image.url) if p.image.present?
+          s
+        else
+          p = p.for_edit if contentr_publisher? && current
+          render(partial: "contentr/paragraphs/#{p.class.to_s.underscore}", locals: {paragraph: p})
         end
-        s
       end
     end
   end

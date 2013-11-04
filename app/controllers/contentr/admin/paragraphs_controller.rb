@@ -102,7 +102,9 @@ class Contentr::Admin::ParagraphsController < Contentr::Admin::ApplicationContro
 
   protected
     def paragraph_params
-      params.require(:paragraph).permit(*params['type'].constantize.permitted_attributes)
+      type =  params['type'] || @page_or_site.paragraphs.select { |p| p.id.to_s == params[:id] }.first.class.name
+
+      params.require(:paragraph).permit(*type.constantize.permitted_attributes)
     end
 
 end

@@ -7,6 +7,7 @@ class Contentr::Admin::PagesController < Contentr::Admin::ApplicationController
     @page = @root_page.present? ? @root_page : nil
     # @contentr_page = @root_page.present? ? @root_page : Contentr::Site.default
     @contentr_page = @root_page.present? ? @root_page : nil
+    tabulatr_for @pages
   end
 
   def new
