@@ -1,31 +1,72 @@
-[![Build Status](https://secure.travis-ci.org/Crunch09/contentr.png)](http://travis-ci.org/Crunch09/contentr)
-
 # WARNING: Under heavy development
 
-I think I should write that this gem is not yet production
-ready. So you should probably wait a bit if you want
-to use that.
+1.) Getting the app to start correct
 
-# Contentr -  The embeddable CMS Engine
+  Add gem:
 
-## Installation
+    gem 'contentr'
 
-First add contentr and the edge version of `carrierwave` to your Gemfile
-```ruby
-gem 'contentr', git: "git://github.com/Crunch09/contentr.git", branch: "activerecord""
-gem 'carrierwave', git: 'git://github.com/jnicklas/carrierwave.git'
-```
+  Run migration files from contentr:
 
-Then run the `bundle` command.
+    rake contentr_engine:install:migrations db:migrate
 
-Copy the migrations and run them:
+  Run Installer:
 
-`rake contentr_engine:install:migrations db:migrate`
+    rails g contentr:install
 
-After that run the install generator.
+  Require contentr in javascripts / stylesheets:
 
-`rails g contentr:install`
+    js:
+      //= require contentr
 
-In order to use `contentr` properly you need to override two methods in your **ApplicationController**:
+    css:
+      @import "contentr";
 
-`contentr_authorized?` and `contentr_publisher?`
+  Require Compass by adding a additional_stylesheet to the Contentr-Setup (THIS IS A BUG!):
+
+    gem:
+      gem 'compass'
+
+    css:
+      @import 'compass';
+
+2.) Contentr
+
+  Introduction:
+    After getting started using contentr works like this:
+
+    DEVELOPMENT:
+
+      Reach the administration area with localhost:3000/contentr/admin and add new sites and pages to get a navigation structure.
+      Just play around here.
+
+      If you try creating a new page you will be asked for a layout contentr should use for rendering this page.
+
+      choose a layout file (in fact it should be present!) and contentr generates a link to the page.
+      You can visit it like localhost:3000/test
+
+      Now that you got a link to the page, you want to tell the page how it has to look like.
+      For doing this you need to edit the chosen layout file, adding area_tags to the file where you want the dynamic content to appear.
+
+  Modelling new Paragraphs:
+
+  1.) add new Paragraphs to models/contentr like this
+  (in this step you just tell the paragraph which attributes it holds, design stuff later)
+
+    // app/models/contentr/text_image_paragraph.rb !
+    module Contentr
+     class TextImageParagraph < Contentr::Paragraph
+         include ActionView::Helpers
+         # Fields
+         field :headline1, :type => 'String'
+         field :headline2, :type => 'String'
+         field :body, :type => 'Integer'
+         field :image, :type => 'File', :uploader => Contentr::FileUploader
+         # Validations
+       end
+     end
+
+
+
+  2.) add a template to a paragraph which gets rendered for it
+  (here you decide how it has to look like)

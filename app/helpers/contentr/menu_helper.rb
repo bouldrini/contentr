@@ -18,14 +18,12 @@ module Contentr
       ancestors = ancestors[start_level..-1] || []
       # set the depth
       depth = (options[:depth] || 1).to_i
-
       # render function
       fn = lambda do |pages, current_depth|
         # pages present?
         return '' unless pages.present?
         # max depth?
         return '' if current_depth > depth
-
         # render the ul tag
         content_tag(:ul) do
           pages.each_with_index.collect do |page, index|

@@ -125,9 +125,6 @@ module Contentr
     # calls the generated #{name}_without_typecast method which acts as a setter
     # def write_store_attribute(name, value, typ)
     def write_store_attribute(store_attribute, key, value)
-      # puts value
-      # puts name
-      # puts typ
       # v = case typ
       #   when "Text", "String", String then value.to_s
       #   when "Integer", "Fixnum", Fixnum then value.to_i
@@ -161,11 +158,7 @@ module Contentr
       self.form_fields ||= []
       typ ||= "text"
       self.form_fields << {name: name, typ: typ.to_sym}
-      puts '----------------------'
-      puts name
-      puts '------------------------'
       permitted_attributes name
-      puts self.permitted_attributes.inspect
     end
 
     def self.uploader_field(name, uploader)
