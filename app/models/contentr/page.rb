@@ -17,7 +17,7 @@ module Contentr
     # Validations
     validates_presence_of   :name
     validates_presence_of   :slug
-    validates_format_of     :slug, with: /\A[a-z0-9\s-]+\z/
+    # validates_format_of     :slug, with: /\A[a-z0-9\s-]+\z/
     # validates_presence_of   :path
     # validates_uniqueness_of :path, allow_nil: false, allow_blank: false
     validate                :check_nodes

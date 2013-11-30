@@ -22,7 +22,6 @@
     iframe.attr('hspace', '0');
     iframe.attr('scrolling', 'auto');
 
-    console.log(iframe);
 
     // fit overlay wrapper
     _fitOverlayWrapper(mask, wrapper);
