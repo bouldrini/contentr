@@ -13,7 +13,7 @@
     var mask        = $('<div id="contentr-overlay-mask"></div>').appendTo(overlay);
     var wrapper     = $('<div id="contentr-overlay-wrapper"></div>').appendTo(overlay);
     var iframe      = $('<iframe id="contentr-overlay-iframe"></iframe>').appendTo(wrapper);
-    var closeButton = $('<div id="contentr-overlay-close"></div>').appendTo(wrapper);
+    var closeButton = $('<div id="contentr-overlay-close">x</div>').appendTo(wrapper);
 
     // configure the iframe
     iframe.attr('src', url);
