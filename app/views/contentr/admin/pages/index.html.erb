@@ -62,11 +62,11 @@ $(function (){
           </td>
           <td>
             <li class="">
-              <%= link_to(raw('<icon class="icon-edit"></icon>'), edit_contentr_admin_page_path(page, :root => @root_page)) %>
+              <%= link_to(raw('<i class="fa fa-edit"></i>'), edit_contentr_admin_page_path(page, :root => @root_page)) %>
             </li>
           </td><td>
             <% unless page.is_a?(Contentr::LinkedPage) %>
-              <li class=""><%= link_to(raw('<icon class="icon-remove"></icon>'), contentr_admin_site_path(page, :root => @root_page), :method => :delete, :confirm => "Really delete page '#{page.name}'? All subpages will be deleted too.") %></li>
+              <li class=""><%= link_to(raw('<i class="fa fa-remove"></i>'), contentr_admin_site_path(page, :root => @root_page), :method => :delete, :confirm => "Really delete page '#{page.name}'? All subpages will be deleted too.") %></li>
             <% end %>
           </td>
         </tr>
