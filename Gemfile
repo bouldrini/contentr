@@ -4,6 +4,7 @@ gemspec
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'bootstrap-wysihtml5-rails'
 # gem 'debugger'
 gem 'carrierwave', git: 'git://github.com/jnicklas/carrierwave.git'
 gem 'coffee-rails',             '~> 4.0.0'

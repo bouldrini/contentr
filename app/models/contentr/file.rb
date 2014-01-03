@@ -3,7 +3,7 @@ require "carrierwave"
 module Contentr
   class File < ActiveRecord::Base
     # Fields
-    permitted_attributes :description, :slug, :file
+    permitted_attributes :description, :slug, :file, :url
 
     validates_uniqueness_of :slug
 

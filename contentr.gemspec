@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'tabulatr2'
   s.add_dependency 'sass-rails'
   s.add_dependency 'bootstrap-sass', '> 2.1'
+  s.add_dependency 'bootstrap-wysihtml5-rails'
   s.add_dependency 'ancestry'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'capybara'

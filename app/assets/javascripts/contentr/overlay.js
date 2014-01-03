@@ -34,6 +34,7 @@
     closeButton.bind('click', function(e) {
       _closeOverlay();
     });
+
   };
 
   var _closeOverlay = function() {
