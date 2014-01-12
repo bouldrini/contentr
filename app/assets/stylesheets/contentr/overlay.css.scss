@@ -1,4 +1,18 @@
 #contentr-overlay {
+  .wysihtml5-toolbar{
+    li{
+      line-height: 25px;
+      float: left;
+      margin-left: 10px;
+      list-style-type: none;
+    }
+    li:first-child{
+      line-height: 25px;
+      float: left;
+      margin-left: 0px !important;
+      list-style-type: none;
+    }
+  }
   #contentr-overlay-close {
     width: 28px;
     height: 28px;
