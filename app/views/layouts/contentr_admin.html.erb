@@ -5,7 +5,7 @@
     <title>Contentr Admin</title>
     <%= stylesheet_link_tag    "contentr_admin" %>
     <% Contentr.additional_admin_stylesheets.each do |aas| %>
-      <%= stylesheet_link_tag aas %>
+      <%= stylesheet_link_tag "#{aas}.scss" %>
     <% end %>
     <%= javascript_include_tag "contentr_admin" %>
     <% Contentr.additional_admin_javascripts.each do |aaj| %>
