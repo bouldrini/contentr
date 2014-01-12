@@ -14,6 +14,7 @@
     var wrapper     = $('<div id="contentr-overlay-wrapper"></div>').appendTo(overlay);
     var iframe      = $('<iframe id="contentr-overlay-iframe"></iframe>').appendTo(wrapper);
     var closeButton = $('<div id="contentr-overlay-close">x</div>').appendTo(wrapper);
+    $('body').addClass('no-scroll')
 
     // configure the iframe
     iframe.attr('src', url);
@@ -32,6 +33,7 @@
 
     // listen for click events on the close button
     closeButton.bind('click', function(e) {
+      $('body').removeClass('no-scroll')
       _closeOverlay();
     });
 
