@@ -47,7 +47,6 @@ module Contentr
       authorized = contentr_authorized?
       publisher = contentr_publisher?
       paragraphs = page.paragraphs_for_area(area_name)
-
       render(
         partial: 'contentr/area',
         locals: {
