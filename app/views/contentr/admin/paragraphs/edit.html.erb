@@ -1,6 +1,6 @@
   <h1><%= t("activerecord.models.#{@paragraph.class.to_s.underscore}") %> bearbeiten</h1>
   <% if Contentr::Paragraph.find(@paragraph.id).unpublished_data.empty? || Contentr::Paragraph.find(@paragraph.id).data == Contentr::Paragraph.find(@paragraph.id).unpublished_data %>
-  <div class='row-fluid'>
+  <div class='row'>
     <a href="#" class="btn span12 btn-success disabled" disable="disabled"><%= t("contentr.no_unpublished_changes") %></a>
   </div>
   <% elsif contentr_publisher? %>
