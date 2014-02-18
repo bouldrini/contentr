@@ -2,12 +2,14 @@
 class Contentr::FileUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  storage :fog
 
-  def filename 
-    "#{original_filename}" if original_filename 
-  end 
+  include CarrierWave::MimeTypes
+  process :set_content_type
+
+  def filename
+    "#{original_filename}" if original_filename
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
