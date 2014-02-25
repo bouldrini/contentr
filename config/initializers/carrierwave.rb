@@ -1,5 +1,5 @@
-ENV["AWS_ACCESS_KEY_ID"] = 'AKIAJ7ODXQVCP7YS6RUQ'
-ENV["AWS_SECRET_ACCESS_KEY"] = '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'
+ENV["AWS_ACCESS_KEY_ID"] = 'AKIAI4FBVCR52JJ5M2MA'
+ENV["AWS_SECRET_ACCESS_KEY"] = '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'
 ENV["AWS_S3_BUCKET"] = 'koehlers-landgasthaus'
 
 CarrierWave.configure do |config|
