@@ -1,7 +1,6 @@
 puts ENV["AWS_ACCESS_KEY_ID"].inspect
 puts ENV["AWS_SECRET_ACCESS_KEY"].inspect
-
-ENV["AWS_S3_BUCKET"] = 'koehlers-landgasthaus'
+puts ENV["AWS_S3_BUCKET"].inspect
 
 CarrierWave.configure do |config|
   config.fog_credentials = {
