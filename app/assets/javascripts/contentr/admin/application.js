@@ -6,6 +6,7 @@
 //= require ./area
 //= require ../../contentr_admin
 //= require tabulatr
+//= require bootstrap-wysihtml5
 
 var Contentr = {};
 
